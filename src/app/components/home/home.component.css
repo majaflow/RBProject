@@ -1,0 +1,10 @@
+.body {
+    border: solid 1px black;
+    background-color: white;
+}
+
+.body img {
+    margin-top: px;
+    z-index: -1;
+}
+
