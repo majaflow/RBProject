@@ -1,18 +1,32 @@
 <div class="login">
-<div class="container">
-    <h1>Login</h1>
-    <form (submit)="loginUser($event)" >
-      <div class="form-group">
-        <label for="email" >Email</label>
-        <input type="text" class="form-control" id="email" [(ngModel)]="user.email" required>
-      </div>
+    <div class="container">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="email">Email
+                </label>
+                <input
+                    [(ngModel)]="UserData.email"
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    required="required"></div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="text" class="form-control" id="password" [(ngModel)]="user.password">
-      </div>
+                <div class="form-group">
+                    <label for="password">Password
+                    </label>
+                    <input
+                        [(ngModel)]="UserData.password"
+                        type="text"
+                        class="form-control"
+                        name="password"
+                        required="required"></div>
 
-      <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="button" class="btn btn-success" (click)="onLogin()">
+                        Login</button>
 
-    </form>
-</div>
+                </form>
+            </div>
+        </div>
+
+<a class="nav-item nav-link" routerLink="shops" routerLinkActive="active"></a>

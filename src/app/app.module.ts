@@ -17,12 +17,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NeedAuthGuard } from './services/auth-guard.service';
 
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'shops', component: ShopsComponent },
+  { path: 'shops', component: ShopsComponent,
+canActivate: [] },
   { path: 'contact', component: ContactComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
