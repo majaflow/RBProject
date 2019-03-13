@@ -1,9 +1,9 @@
-.login {
+.signup {
     border: solid 1px black;
     width: 50vw;
-    height: 50vh;
+    height: 60vh;
     text-align: center;
-    padding: 3em;
+    padding: 5em;
     box-shadow: 5px 10px 8px #888888;
     margin: 10em 0 0 20em
 }
