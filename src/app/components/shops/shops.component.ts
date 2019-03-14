@@ -1,4 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
+import { ShopsService } from '../../services/shop.service';;
+
 
 @Component({
   selector: 'app-shops',
@@ -8,10 +10,16 @@ import { Component, OnInit, Injectable } from '@angular/core';
 
 @Injectable()
 export class ShopsComponent implements OnInit {
+  public shops = {}
 
-  constructor() { }
+  constructor(private shopsService: ShopsService ) { }
 
   ngOnInit() {
+    this.shopsService.getShops()
+    .subscribe(shops => {
+      this.shops = shops
+      // console.log(shops)
+    })
   }
 
 }

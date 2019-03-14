@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http'
 import {map} from 'rxjs/operators'
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../models/user';
+
+
 const httpOptions ={
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -13,8 +17,15 @@ const httpOptions ={
 export class UserService {
   private baseUrl = 'https://coffeeredbadgeserver.herokuapp.com/'
   private logIn = 'user/signin'
-  private signUp = 'user/createuser'
-  constructor(private http : HttpClient) { }
+  private signUp = 'user/createuser';
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
+
+  constructor(private http : HttpClient) { 
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
   
   
   
@@ -28,6 +39,13 @@ export class UserService {
       return user
     }))
   }
+
+
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   this.currentUserSubject.next(null);
+    
+  // }
 
 
 
