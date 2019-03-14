@@ -1,0 +1,81 @@
+<form 
+  [formGroup] = "createShops"
+  (ngSubmit)= "onCreateShops()"
+  >
+    <label for="name">Name of Shop</label>
+    <input
+      formControlName = "name"
+      type="text"
+      name="name"
+      required
+    >
+
+    <label for="location">Location</label>
+    <input
+      formControlName = "location"
+      type="text"
+      name="location"
+      required
+    >
+
+    <label for="favoriteDrink">Favorite Drink</label>
+    <input
+      formControlName = "favoriteDrink"
+      type="text"
+      name="favoriteDrink"
+      required
+    >
+
+    <label for="note">Note</label>
+    <input
+      formControlName = "note"
+      name="note"
+      required
+    >
+    <!-- <option
+      *ngFor="let g of genres"
+      value="{{ g }}">
+      {{ g }}
+      </option> -->
+
+    
+
+
+    <!-- <label for="owner">owner</label>
+    <input
+      formControlName = "owner"
+      type="text"
+      name="owner"
+      required
+    > -->
+
+    <!-- <label for="rating">Rating</label>
+    <select
+      formControlName = "rating"
+      name="rating"
+      required
+    >
+    <option
+      *ngFor="let rating of ratings"
+      value="{{ rating.value }}">
+      {{ rating.view }}
+    </option>
+  
+    </select> -->
+
+    <button
+      [disabled]="!useBtn"
+      type="submit"
+      >
+      {{ useBtn === false ? "Think About a Shop" : "Add a Shop" }}
+      </button>
+</form> 
+
+
+<div *ngIf="shops.length !== 0; else noShops">
+  <app-display-shops
+    *ngFor="let shops of shops"
+    [shops]="shops"
+  ></app-display-shops>
+  
+</div>
