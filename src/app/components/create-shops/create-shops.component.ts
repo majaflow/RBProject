@@ -48,8 +48,10 @@ export class CreateShopsComponent implements OnInit {
   }
  
   onCreateShops() : void {
+    
     this.shops.unshift(this.createShops.value) 
     this.shopsService.makeShops(this.shops[0]).subscribe(Shop => this.shops[0] = Shop);
+    this.findShops();
   }
 
   findShops() : void {
