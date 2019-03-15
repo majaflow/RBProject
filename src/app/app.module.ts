@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule, MatCardModule, MatButtonModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,7 @@ import { DisplayShopsComponent } from './display-shops/display-shops.component';
 import { AuthGuard } from './services/auth.guard';
 
 
-
+ 
 
 
 const appRoutes: Routes = [
@@ -83,7 +84,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     // CustomMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatCardModule ,
+    MatButtonModule 
   ],
   providers: [ShopsService, HttpClient, AuthGuard],
   bootstrap: [AppComponent]
