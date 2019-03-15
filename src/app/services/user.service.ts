@@ -35,6 +35,7 @@ export class UserService {
     .pipe(map(user=>{
       if(user && user.sessionToken){
         localStorage.setItem('token',user.sessionToken)
+        localStorage.setItem('id',user.user.id)
       }
       return user
     }))
@@ -54,11 +55,13 @@ export class UserService {
     .pipe(map(user=>{
       if(user && user.sessionToken){
         localStorage.setItem('token',user.sessionToken)
+        localStorage.setItem('id',user.user.id)
       }
       return user
     }))
   }
 }
+
 
 
 

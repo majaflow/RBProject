@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule, MatCardModule, MatButtonModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import { CreateShopsComponent } from './components/create-shops/create-shops.com
 import { HttpClient } from '@angular/common/http';
 import { DisplayShopsComponent } from './display-shops/display-shops.component';
 
-
+ 
 
 
 const appRoutes: Routes = [
@@ -61,7 +62,10 @@ canActivate: [] },
     ReactiveFormsModule,
     BrowserAnimationsModule,
     // CustomMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatCardModule ,
+    MatButtonModule 
   ],
   providers: [ShopsService, HttpClient],
   bootstrap: [AppComponent]

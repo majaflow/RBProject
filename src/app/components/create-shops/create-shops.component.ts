@@ -12,12 +12,6 @@ export class CreateShopsComponent implements OnInit {
   createShops: FormGroup;
   shops = [];
 
-  // genres = [
-  //   'Fiction',
-  //   'Nonfiction',
-  //   'Comic',
-  //   'Cookbook'
-  // ];
 
   // ratings = [
   //   {value: 1, view: '⭐️' },
@@ -40,7 +34,7 @@ export class CreateShopsComponent implements OnInit {
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-      owner: new FormControl(),
+      owner: localStorage.getItem('id')
       // rating: new FormControl()
     })
 

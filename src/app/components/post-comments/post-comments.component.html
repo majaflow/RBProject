@@ -1,3 +1,8 @@
-<p>
-  post-comments works!
-</p>
+<mat-card>
+  <mat-form-field>
+    <textarea matInput rows="6" [(ngModel)]="enteredValue "></textarea> 
+  </mat-form-field>
+</mat-card>
+<button mat-raised-button (click)="onAddComment()">Save Comments</button>
+<p>{{ newComment }}</p>
+ 
