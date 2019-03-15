@@ -20,7 +20,8 @@ export class UserService {
   private signUp = 'user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-
+  public id: number ;
+  public role: string;
 
   constructor(private http : HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -35,18 +36,12 @@ export class UserService {
     .pipe(map(user=>{
       if(user && user.sessionToken){
         localStorage.setItem('token',user.sessionToken)
-        localStorage.setItem('id',user.user.id)
+        this.id=user.user.id
+        this.role=user.user.role
       }
       return user
     }))
   }
-
-
-  // logout() {
-  //   localStorage.removeItem('token');
-  //   this.currentUserSubject.next(null);
-    
-  // }
 
 
 
@@ -55,7 +50,8 @@ export class UserService {
     .pipe(map(user=>{
       if(user && user.sessionToken){
         localStorage.setItem('token',user.sessionToken)
-        localStorage.setItem('id',user.user.id)
+        this.id=user.user.id
+        this.role=user.user.role
       }
       return user
     }))
