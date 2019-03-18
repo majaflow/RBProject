@@ -6,7 +6,8 @@
     box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
     transition: 1.5s;
     width: 30vw;
-    margin: 1rem;
+    margin: 3rem;
+    padding: 3rem;
     text-align: center;
     background-color: rgb(123, 126, 129);
     border-radius: 10px;

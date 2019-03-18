@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import { CustomMaterialModule } from './material.module';
 // import { AppRoutingModule } from './app.routing.module';
 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatCardModule, MatButtonModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -23,8 +22,10 @@ import { ShopsService } from './services/shop.service';
 import { CreateShopsComponent } from './components/create-shops/create-shops.component';
 import { HttpClient } from '@angular/common/http';
 import { DisplayShopsComponent } from './display-shops/display-shops.component';
+import { CommentListsComponent } from './components/comment-lists/comment-lists.component';
 
  
+
 
 
 const appRoutes: Routes = [
@@ -50,7 +51,8 @@ canActivate: [] },
     ContactComponent,
     SignupComponent,
     CreateShopsComponent,
-    DisplayShopsComponent
+    DisplayShopsComponent,
+    CommentListsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -61,11 +63,11 @@ canActivate: [] },
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // CustomMaterialModule,
     HttpClientModule,
     MatInputModule,
     MatCardModule ,
-    MatButtonModule 
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [ShopsService, HttpClient],
   bootstrap: [AppComponent]

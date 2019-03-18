@@ -24,9 +24,6 @@ getShops() {
   return this.http.get(this.shopUrl)
 }
 
-// getBooks() : Observable<Book[]> {
-//   return this.http.get<Book[]>(this.dbUrl);
-// }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
   return this.http.post<Shops[]>(this.createUrl, shops, httpOptions);

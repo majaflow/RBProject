@@ -24,7 +24,7 @@ export class CreateShopsComponent implements OnInit {
   constructor(private fb: FormBuilder, private shopsService: ShopsService) {
     setTimeout(() => {
       this.useBtn = true;
-    }, 3000); 
+    },) 
    }
 
   ngOnInit() {
@@ -34,8 +34,8 @@ export class CreateShopsComponent implements OnInit {
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-      owner: localStorage.getItem('id')
-      // rating: new FormControl()
+      owner: localStorage.getItem('id'),
+      rating: new FormControl()
     })
 
     this.findShops();
