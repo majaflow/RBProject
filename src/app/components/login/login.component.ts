@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
             if (res.token) {
                 this.customer.setToken(res.token);
                 
-                this.router.navigate(['/shops']);
+                this.router.navigate(['/login']);
             }
         }
     })

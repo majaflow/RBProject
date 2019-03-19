@@ -8,11 +8,13 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./post-comments.component.css']
 })
 export class PostCommentsComponent implements OnInit {
+
 // useBtn = false;
 // newComment = 'no content';
 // enteredValue = ""
 createComments: FormGroup;
 comments = [];
+
 
 
   constructor(private fb: FormBuilder, private postService: PostService) {} 
