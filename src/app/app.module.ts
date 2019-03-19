@@ -23,21 +23,43 @@ import { CreateShopsComponent } from './components/create-shops/create-shops.com
 import { HttpClient } from '@angular/common/http';
 import { DisplayShopsComponent } from './display-shops/display-shops.component';
 import { CommentListsComponent } from './components/comment-lists/comment-lists.component';
+import { AuthGuard } from './services/auth.guard';
+
 
  
 
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  
-  { path: 'shops', component: ShopsComponent,
-canActivate: [] },
-  { path: 'contact', component: ContactComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '**', redirectTo: 'shops'}
+  { path: '',
+  component: HomeComponent
+  },
+
+  { path: 'shops',
+  component: ShopsComponent,
+  canActivate: [AuthGuard],
+  data: ['admin']
+  },
+
+  { path: 'contact',
+  component: ContactComponent
+  },
+
+  { path: 'signup',
+  component: SignupComponent
+  },
+
+  { path: 'login',
+  component: LoginComponent
+  },
+
+  { path: 'home',
+  component: HomeComponent
+  },
+
+  { path: '**',
+  redirectTo: 'shops'
+  }
 ];
 
 @NgModule({
@@ -69,7 +91,7 @@ canActivate: [] },
     MatButtonModule,
     MatExpansionModule
   ],
-  providers: [ShopsService, HttpClient],
+  providers: [ShopsService, HttpClient, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
