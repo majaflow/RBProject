@@ -37,7 +37,12 @@ const appRoutes: Routes = [
   { path: 'shops',
   component: ShopsComponent,
   canActivate: [AuthGuard],
-  data: ['admin']
+  children: [
+    {
+      path: 'create-shops',
+      component: CreateShopsComponent,
+    }
+  ]
   },
 
   { path: 'contact',
@@ -57,7 +62,7 @@ const appRoutes: Routes = [
   },
 
   { path: '**',
-  redirectTo: 'shops'
+  redirectTo: 'home'
   }
 ];
 

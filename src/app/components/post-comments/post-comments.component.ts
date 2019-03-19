@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-comments.component.css']
 })
 export class PostCommentsComponent implements OnInit {
-newComment = 'no content';
+newComment = '';
 enteredValue = ""
 
   constructor() { }
