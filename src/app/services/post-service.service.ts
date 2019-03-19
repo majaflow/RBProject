@@ -17,8 +17,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
-  private getUrl = 'https://coffeeredbadgeserver.herokuapp.com/comment/owner'
-  private commentUrl = 'https://coffeeredbadgeserver.herokuapp.com/comment/create'
+  // private getUrl = 'https://coffeeredbadgeserver.herokuapp.com/comment/owner'
+  private commentUrl = 'https://coffeeredbadgeserver.herokuapp.com/coffee/:coffeeId/comment/create'
 
 
   constructor(private http: HttpClient) { }
@@ -26,8 +26,8 @@ export class PostService {
 
 
 
-  postComment(comment: Comments) : Observable<Comments[]> {
-    return this.http.post<Comments[]>(this.commentUrl, comment, httpOptions);
+  postComment(comment: any) : Observable<any> {
+    return this.http.post<any>(this.commentUrl, comment, httpOptions);
   }
 
 
