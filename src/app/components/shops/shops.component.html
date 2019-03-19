@@ -7,15 +7,17 @@
   <div class="card">
       <div class="cardContainer">
           
-                <p>{{ shops.id }} </p>
+                <!-- <p>{{ shops.id }} </p> -->
+                
                 <h1>{{ shops.name }} </h1>
-                 <p> {{ shops.location }} </p>
-                 <p> {{ shops.favoriteDrink }}</p>
+                <p> {{ shops.location }} </p>
+                <p> {{ shops.favoriteDrink }}</p>
                 <p> {{ shops.note }} </p>
-                <p> {{ shops.owner }}</p>
+                Posted by: <p> {{ shops.owner }}</p>
                 
               
-<app-post-comments></app-post-comments>                
+<app-post-comments></app-post-comments>
+<app-comment-lists></app-comment-lists>       
       </div>
   </div>
 </div>
