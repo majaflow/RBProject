@@ -63,7 +63,11 @@ export class UserService {
       return user
     }))
   }
+  loggedIn() {
+    return !!localStorage.getItem('token')
+  }
 }
+
 
 
 
