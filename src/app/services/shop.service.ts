@@ -24,12 +24,15 @@ getShops() {
   return this.http.get(this.shopUrl)
 }
 
-// getBooks() : Observable<Book[]> {
-//   return this.http.get<Book[]>(this.dbUrl);
-// }
+
 
 makeShops(shops: Shops) : Observable<Shops[]> {
   return this.http.post<Shops[]>(this.createUrl, shops, httpOptions);
 }
-
+deleteShops(id: Number): Observable<Shops[]> {
+  return this.http.delete<Shops[]>(`${this.shopUrl}${id}`, httpOptions);
+}
+updateShops(shops: Shops) : Observable<Shops[]> {
+  return this.http.put<Shops[]>(`${this.shopUrl}${shops.id}`, shops, httpOptions);
+}
 }

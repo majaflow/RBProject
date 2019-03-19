@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShopsService } from './services/shop.service';
 import { CreateShopsComponent } from './components/create-shops/create-shops.component';
 import { HttpClient } from '@angular/common/http';
-import { DisplayShopsComponent } from './display-shops/display-shops.component';
+//import { DisplayShopsComponent } from './display-shops/display-shops.component';
 import { AuthGuard } from './services/auth.guard';
 
 
@@ -72,7 +72,7 @@ const appRoutes: Routes = [
     ContactComponent,
     SignupComponent,
     CreateShopsComponent,
-    DisplayShopsComponent
+  //  DisplayShopsComponent
   ],
   imports: [
     RouterModule.forRoot(
