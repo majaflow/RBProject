@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/services/post-service.service';
+import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
+import {ShopsService} from  '../../services/shop.service'
 @Component({
   selector: 'app-post-comments',
   templateUrl: './post-comments.component.html',
@@ -9,33 +9,29 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class PostCommentsComponent implements OnInit {
 
-// useBtn = false;
-// newComment = 'no content';
-// enteredValue = ""
-createComments: FormGroup;
+
+createComments: {
+  cofeeID: number,
+  owner: number,
+  comment: string
+};
 comments = [];
 
 
 
-  constructor(private fb: FormBuilder, private postService: PostService) {} 
+  constructor(private fb: FormBuilder, private userService: UserService, private shopService: ShopsService) {} 
   
 
   ngOnInit() {
-    this.createComments = this.fb.group({
-      name: new FormControl(),
-      comment: new FormControl(),
-      rating: new FormControl(),
-      owner: localStorage.getItem('id'),
-    })
-
-    // this.findShops();
+    
   }
 
 
   onSubmitComment() {
-      // this.comments.unshift(this.value) 
-      this.postService.postComment(this.comments).subscribe(Comment => this.comments = Comment);
+       
+   this.createComments.cofeeID = this.shopService.shopID
+    this.createComments.owner=this.userService.id
+      this.shopService.postComment(this.createComments).subscribe(Comment => this.comments = Comment);
       console.log(Comment)
-      // this.findShops();
     }
 }

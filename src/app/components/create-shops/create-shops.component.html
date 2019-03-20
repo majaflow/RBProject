@@ -77,8 +77,8 @@
   <div class="deck"
   *ngFor="let el of shops"
 >
-      <div class="card">
-          <div class="cardContainer">
+      <div class="card" >
+          <div class="cardContainer" (click)="myShop(el.id)">
               <p 
                 > {{ el.id }}</p>
               <h1>{{ el.name }}</h1>
@@ -86,6 +86,9 @@
               <p> {{ el.favoriteDrink }}</p>
               <p>{{ el.note }}</p>
               <p>{{ el.owner }}</p>
+              <!-- <app-post-comments></app-post-comments>
+              <app-comment-lists></app-comment-lists> -->
+              
           <div *ngIf="role === 'admin'|| el.userId === ID">
               <button (click)="deleteShop(el.id)">delete</button>
           </div>

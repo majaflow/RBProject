@@ -12,8 +12,9 @@ export class CreateShopsComponent implements OnInit {
   useBtn = false;
   createShops: FormGroup;
   shops= []
-  ID = this.userService.id
+  ID = Number(localStorage.getItem('id'))
   role = localStorage.getItem('role')
+  activeShop = {}
   
   constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
     setTimeout(() => {
@@ -32,7 +33,7 @@ export class CreateShopsComponent implements OnInit {
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-      owner: localStorage.getItem('id'),
+      owner: Number(localStorage.getItem('id')),
       rating: new FormControl()
     })
   
@@ -48,20 +49,43 @@ export class CreateShopsComponent implements OnInit {
   }
   
   findShops() : void {
+    
     this.shopsService.getShops().subscribe(Shops => {
        this.shops =Object.values(Shops);
        this.shops.reverse();
       console.log(Shops);
     })
   }
+  myShop(id) {
+    console.log(id)
+    this.shopsService.setshopID(id)
+    this.getSingle(id);
+  }
+
+  getSingle(shopId) {
+    this.shopsService.getSingle(shopId).subscribe()
+    this.shopsService.getSingle(shopId).subscribe(data => {
+      this.activeShop = data
+      console.log(this.activeShop)
+    })
+  }
+
   deleteShop(id) {
-    this.shopsService.deleteShops(id)
-    this.findShops()}
+    this.shopsService.setshopID(id)
+    this.shopsService.deleteShops()
+    this.findShops()
+  }
   updateShop(id) {
     console.log(id)
-    let UpdatedShop = this.createShops.value
-    UpdatedShop.id = id
-    this.shopsService.updateShops(UpdatedShop)
-    this.findShops()}
-
+    let UpdatedShop = {
+    id:  id,
+    owner: this.ID,
+    rating:  5000
+    }
+    this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
+    this.findShops()
+    console.log(Shop)
+    })
+    
+}
 }
