@@ -35,8 +35,16 @@ getSingle(shopId) {
 makeShops(shops: Shops) : Observable<Shops[]> {
   return this.http.post<Shops[]>(this.createUrl, shops, httpOptions);
 }
-deleteShops(): Observable<Shops[]> {
-  return this.http.delete<Shops[]>(`${this.shopUrl}${this.shopID}`, httpOptions);
+deleteShops() {
+  fetch(`${this.shopUrl}${this.shopID}`,{
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': localStorage.getItem('token')
+    }
+  })
+  console.log(`${this.shopUrl}${this.shopID}`)
+ // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
   console.log(shops.id)
