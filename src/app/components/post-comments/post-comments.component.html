@@ -7,20 +7,12 @@
 <p>{{ newComment }}</p>        -->
 
 
-<form 
-  [formGroup] = "createComments"
-  (ngSubmit)= "onSubmitComment()"
-  >
+
     <label for="Comment">Comment</label>
-    <input
-      formControlName = "name"
-      type="text"
-      name="comment"
-      required
-    >
+      <textarea [(ngModel)]="str"></textarea> 
+     
 
     <button
       (click)="onSubmitComment()"
       type="submit"
       >Submit</button>
-</form> 

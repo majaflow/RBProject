@@ -20,8 +20,9 @@ export class UserService {
   private signUp = 'user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  public id: number ;
+  public id: number;
   public role: string;
+  public header= httpOptions
 
   constructor(private http : HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -34,11 +35,14 @@ export class UserService {
   login(user) {
     return this.http.post<any>(`${this.baseUrl}${this.logIn}`,user)
     .pipe(map(user=>{
-      if(user && user.sessionToken){
+      if(user && user.sessionToken && user.user.id !== undefined){
         localStorage.setItem('token',user.sessionToken)
-        this.id=user.user.id
-        this.role=user.user.role
+        localStorage.setItem('id',user.user.id)
+        localStorage.setItem('role', user.user.role)
+        this.id= Number(localStorage.getItem('id'))
       }
+      console.log(user.user.id)
+      console.log(this.id)
       return user
     }))
   }
@@ -50,8 +54,8 @@ export class UserService {
     .pipe(map(user=>{
       if(user && user.sessionToken){
         localStorage.setItem('token',user.sessionToken)
-        this.id=user.user.id
-        this.role=user.user.role
+        localStorage.setItem('id',user.user.id)
+        localStorage.setItem('role', user.user.role)
       }
       return user
     }))

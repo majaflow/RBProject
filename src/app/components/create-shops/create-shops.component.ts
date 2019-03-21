@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-shops',
@@ -10,50 +11,82 @@ import { ShopsService } from '../../services/shop.service';
 export class CreateShopsComponent implements OnInit {
   useBtn = false;
   createShops: FormGroup;
-  shops = [];
-
-
-  // ratings = [
-  //   {value: 1, view: '⭐️' },
-  //   {value: 2, view: '⭐️⭐️'},
-  //   {value: 3, view: '⭐️⭐️⭐️'},
-  //   {value: 4, view: '⭐️⭐️⭐️⭐️'},
-  //   {value: 5, view: '⭐️⭐️⭐️⭐️⭐️'}
-  // ];
-
-  constructor(private fb: FormBuilder, private shopsService: ShopsService) {
+  shops= []
+  ID = Number(localStorage.getItem('id'))
+  role = localStorage.getItem('role')
+  activeShop = {}
+  
+  constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
     setTimeout(() => {
       this.useBtn = true;
     },) 
    }
 
   ngOnInit() {
+    console.log(this.userService.id)
+    
+   
+    
     this.createShops = this.fb.group({
-      id: new FormControl(),
+      id: null,
       name: new FormControl(),
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-      owner: localStorage.getItem('id'),
+      owner: Number(localStorage.getItem('id')),
       rating: new FormControl()
     })
-
-    this.findShops();
+  
+   this.findShops();
   }
  
-  onCreateShops() : void {
+  onCreateShops() {
     
-    this.shops.unshift(this.createShops.value) 
-    this.shopsService.makeShops(this.shops[0]).subscribe(Shop => this.shops[0] = Shop);
-    this.findShops();
+    this.shopsService.makeShops(this.createShops.value).subscribe(Shop =>  {
+      this.findShops()
+      console.log(Shop)
+    })
   }
-
+  
   findShops() : void {
+    
     this.shopsService.getShops().subscribe(Shops => {
-      // this.shops = Shops;
-      // this.shops.reverse();
+       this.shops =Object.values(Shops);
+       this.shops.reverse();
       console.log(Shops);
     })
   }
+  myShop(id) {
+    console.log(id)
+    this.shopsService.setshopID(id)
+    this.getSingle(id);
+  }
 
+  getSingle(shopId) {
+    this.shopsService.getSingle(shopId).subscribe()
+    this.shopsService.getSingle(shopId).subscribe(data => {
+      this.activeShop = data
+      console.log(this.activeShop)
+      // Open Dialogue here (material dialogue???)
+    })
+  }
+
+  deleteShop(id) {
+    this.shopsService.setshopID(id)
+    this.shopsService.deleteShops()
+    this.findShops()
+  }
+  updateShop(id) {
+    console.log(id)
+    let UpdatedShop = {
+    id:  id,
+    owner: this.ID,
+    rating:  5000
+    }
+    this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
+    this.findShops()
+    console.log(Shop)
+    })
+    
+}
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-
+import { UserService } from '../services/user.service';
+import { ShopsService } from '../services/shop.service';
+import { HttpClient } from "@angular/common/http"
 @Component({
     selector: 'app-display-shops',
     templateUrl: './display-shops.component.html',
@@ -10,9 +12,14 @@ import { Input } from '@angular/core';
 export class DisplayShopsComponent implements OnInit {
     public _shop = {};
     ratings = [ '⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️' ]
-    
+    public ID: number
+    constructor(private userService : UserService, private shopService : ShopsService, private http: HttpClient){
+    }
     ngOnInit() {
-        this._shop['rating'] = this.ratings[this._shop['rating'] -1 ]
+     this.ID = this.userService.id
+ 
+        console.log(this.ID)
+
     }
 
     @Input() set shops(shops: any) {

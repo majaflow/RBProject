@@ -1,3 +1,5 @@
+import { ArrayType } from '@angular/compiler';
+
 export interface Shops {
     id: number;
     name: string;
@@ -5,4 +7,5 @@ export interface Shops {
     favoriteDrink: string;
     note: string;
     owner: string;
+    comment: Array<string>
 }
