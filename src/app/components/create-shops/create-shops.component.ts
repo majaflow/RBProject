@@ -67,6 +67,7 @@ export class CreateShopsComponent implements OnInit {
     this.shopsService.getSingle().subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
+      // Open Dialogue here (material dialogue???)
     })
   }
 

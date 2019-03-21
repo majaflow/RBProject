@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
-import {Comments} from '../models/comment'
+import {Comments} from '../models/comment';
 import { UserService } from './user.service';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-type' : 'application/json',
@@ -18,7 +19,7 @@ export class ShopsService {
   private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
   
   public shopID : number
-  private commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
+  commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
   constructor(
     private http: HttpClient, private userService:UserService) { }
 
@@ -58,11 +59,19 @@ getComment() {
 
 
 
-postComment(comment: Comments) : Observable<Comments> {
-comment.owner= this.userService.id
-console.log('comment :', comment)
-return this.http.post<Comments>(`${this.commentUrl}${this.shopID}/comment/create`, comment, httpOptions);
-}
+
+postComment(comment) {
+  // fetch(`${this.commentUrl}${this.shopID}/comment/create`,{
+  //   method: 'DELETE', 
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'authorization': localStorage.getItem('token')
+  //   }
+  // })
+
+  // console.log('comment :', comment)
+  return this.http.post<any>(`${this.commentUrl}${this.shopID}/comment/create`, comment, httpOptions);
+  }
 }
 /* 
 

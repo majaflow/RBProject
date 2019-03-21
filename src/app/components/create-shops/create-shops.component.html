@@ -86,7 +86,8 @@
               <p> {{ el.favoriteDrink }}</p>
               <p>{{ el.note }}</p>
               <p>{{ el.owner }}</p>
-               <app-post-comments ></app-post-comments>
+
+              
                <div *ngIf= "activeShop.coffee" >
                <mat-accordion  *ngFor="let comment of activeShop.coffee.comments">
                   <mat-expansion-panel  >
@@ -97,6 +98,11 @@
                   </mat-expansion-panel>
                 </mat-accordion>
               </div>
+
+               <app-post-comments [owner]="ID"></app-post-comments>
+            
+              
+
           <div *ngIf="role === 'admin'|| el.userId === ID">
               <button (click)="deleteShop(el.id)">delete</button>
           </div>

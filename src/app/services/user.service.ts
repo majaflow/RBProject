@@ -20,7 +20,10 @@ export class UserService {
   private signUp = 'user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  public id: number  ;
+
+
+  public id: number;
+
   public role: string;
   public header= httpOptions
 
@@ -41,7 +44,8 @@ export class UserService {
         localStorage.setItem('token',user.sessionToken)
         localStorage.setItem('id',user.user.id)
         localStorage.setItem('role', user.user.role)
-this.id=Number(localStorage.getItem('id'))
+
+        this.id= Number(localStorage.getItem('id'))
       }
       console.log(user.user.id)
       console.log(this.id)

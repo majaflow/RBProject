@@ -26,12 +26,16 @@
 
 
 
-<mat-accordion>
-  <mat-expansion-panel >
+
+<mat-accordion *ngIf: active.coffee>
+  <mat-expansion-panel *ngFor: let comment of active.coffee.comments>
     <mat-expansion-panel-header>
-      <p>Comments</p>
+
+
+      <p>{{owner.id}}</p>
     </mat-expansion-panel-header>
-    <p>user1 : heyy</p>
+    <p></p>
+
   </mat-expansion-panel>
 </mat-accordion>
 <!-- <p *ngIf="comments.length <= 0">No comments added yet</p> -->
