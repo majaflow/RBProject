@@ -89,13 +89,16 @@
                <app-post-comments [owner]="ID"></app-post-comments>
               <app-comment-lists></app-comment-lists>
               
+              
           <div *ngIf="role === 'admin'|| el.userId === ID">
               <button (click)="deleteShop(el.id)">delete</button>
           </div>
-          <div *ngIf="el.userId === ID">    
-          <button (click)="updateShop(el.id)">update</button>
-      
-          </div>
+              
+          <!-- <button (click)="updateShop(el.id)">update</button> -->
+          <button (click)="openBottomSheet()">Edit Shop</button>  
+          
+
+          
       </div>
   </div>
 </div>

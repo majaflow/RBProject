@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatBottomSheet, MatBottomSheetRef, MatBottomSheetModule } from '@angular/material';
+import { BottomModalComponent } from '../bottom-modal/bottom-modal.component';
 
 @Component({
   selector: 'app-create-shops',
@@ -16,16 +18,23 @@ export class CreateShopsComponent implements OnInit {
   role = localStorage.getItem('role')
   activeShop = {}
   
-  constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
+  constructor(private fb: FormBuilder, 
+    private shopsService: ShopsService, 
+    private userService: UserService,
+    private bottomSheet: MatBottomSheet) {
     setTimeout(() => {
       this.useBtn = true;
     },) 
    }
+   
+   openBottomSheet(): void {
+    this.bottomSheet.open(BottomModalComponent)
+  }
 
   ngOnInit() {
     console.log(this.userService.id)
     
-   
+    
     
     this.createShops = this.fb.group({
       id: null,
@@ -79,14 +88,15 @@ export class CreateShopsComponent implements OnInit {
   updateShop(id) {
     console.log(id)
     let UpdatedShop = {
-    id:  id,
+   coffee:{ id:  id,
     owner: this.ID,
-    rating:  5000
+    rating:  5}
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
     console.log(Shop)
     })
     
-}
+  }
+
 }
