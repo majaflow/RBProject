@@ -9,11 +9,13 @@ import {ShopsService} from  '../../services/shop.service'
 })
 export class PostCommentsComponent implements OnInit {
 
-
+str : string
 createComments: {
   cofeeID: number,
   owner: number,
-  comment: string
+  comment: string,
+  name: string,
+  rating: string
 };
 comments = [];
 
@@ -29,9 +31,8 @@ comments = [];
 
   onSubmitComment() {
        
-   this.createComments.cofeeID = this.shopService.shopID
-    this.createComments.owner=this.userService.id
-      this.shopService.postComment(this.createComments).subscribe(Comment => this.comments = Comment);
+   
+      this.shopService.postComment(this.createComments).subscribe(Comments => console.log(Comments));
       console.log(Comment)
     }
 }

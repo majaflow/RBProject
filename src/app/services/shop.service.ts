@@ -3,6 +3,7 @@ import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
 import {Comments} from '../models/comment'
+import { UserService } from './user.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-type' : 'application/json',
@@ -15,10 +16,11 @@ const httpOptions = {
 export class ShopsService {
   private shopUrl = "https://coffeeredbadgeserver.herokuapp.com/coffee/";
   private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
+  
   public shopID : number
   private commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient, private userService:UserService) { }
 
 
 getShops() {
@@ -28,8 +30,8 @@ setshopID(value : number) {
 this.shopID = value
 }
 
-getSingle(shopId) {
-  return this.http.get(`${this.shopUrl}${shopId}`)
+getSingle() {
+  return this.http.get(`${this.shopUrl}${this.shopID}`)
 }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
@@ -48,7 +50,7 @@ deleteShops() {
 }
 updateShops(shops: any) : Observable<any> {
   console.log(shops.id)
-  return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+  return this.http.put<any>(`${this.shopUrl}${shops.id}`, shops, httpOptions);
 }
 getComment() {
   return this.http.get(this.commentUrl)
@@ -56,10 +58,10 @@ getComment() {
 
 
 
-postComment(comment: any) : Observable<any> {
-
+postComment(comment: Comments) : Observable<Comments> {
+comment.owner= this.userService.id
 console.log('comment :', comment)
-return this.http.post<any>(`${this.commentUrl}${this.shopID}/comment/create`, comment, httpOptions);
+return this.http.post<Comments>(`${this.commentUrl}${this.shopID}/comment/create`, comment, httpOptions);
 }
 }
 /* 
