@@ -9,13 +9,8 @@
 
 
     <label for="Comment">Comment</label>
-    <input
-      [(ngModel)] = 'createComments'
-      type="text"
-      name="comment"
-      placeholder="comment here"
-      required
-    >
+      <textarea [(ngModel)]="str"></textarea> 
+     
 
     <button
       (click)="onSubmitComment()"

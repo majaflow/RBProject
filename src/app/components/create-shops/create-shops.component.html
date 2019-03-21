@@ -86,7 +86,7 @@
               <p> {{ el.favoriteDrink }}</p>
               <p>{{ el.note }}</p>
               <p>{{ el.owner }}</p>
-               <app-post-comments></app-post-comments>
+               <app-post-comments [owner]="ID"></app-post-comments>
               <app-comment-lists></app-comment-lists>
               
           <div *ngIf="role === 'admin'|| el.userId === ID">
