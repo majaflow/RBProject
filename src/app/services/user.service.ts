@@ -20,13 +20,18 @@ export class UserService {
   private signUp = 'user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+
+
   public id: number;
+
   public role: string;
   public header= httpOptions
 
   constructor(private http : HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+    this.id=Number(localStorage.getItem('id'))
+
   }
   
   
@@ -39,6 +44,7 @@ export class UserService {
         localStorage.setItem('token',user.sessionToken)
         localStorage.setItem('id',user.user.id)
         localStorage.setItem('role', user.user.role)
+
         this.id= Number(localStorage.getItem('id'))
       }
       console.log(user.user.id)
@@ -56,6 +62,8 @@ export class UserService {
         localStorage.setItem('token',user.sessionToken)
         localStorage.setItem('id',user.user.id)
         localStorage.setItem('role', user.user.role)
+        this.id=Number(localStorage.getItem('id'))
+
       }
       return user
     }))
