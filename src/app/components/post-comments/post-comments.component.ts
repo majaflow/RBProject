@@ -55,6 +55,7 @@ comments = [];
     console.log('I am logging')
     this.shopService.postComment(commObj)
     .subscribe(data => {
+      window.location.href='/shops';
       console.log('Data:', data)
     })
   }

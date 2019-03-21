@@ -75,6 +75,7 @@ export class CreateShopsComponent implements OnInit {
     this.shopsService.setshopID(id)
     this.shopsService.deleteShops()
     this.findShops()
+    window.location.href='/shops';
   }
   updateShop(id) {
     console.log(id)
@@ -85,8 +86,10 @@ export class CreateShopsComponent implements OnInit {
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
+    window.location.href='/shops';
     console.log(Shop)
     })
     
 }
 }
+

@@ -78,15 +78,28 @@
   *ngFor="let el of shops"
 >
       <div class="card" >
-          <div class="cardContainer" (click)="myShop(el.id)">
-              <p 
-                > {{ el.id }}</p>
+          <div class="cardContainer" (keyup)="myShop(el.id)">
+              <!-- <p> {{ el.id }}</p> -->
               <h1>{{ el.name }}</h1>
               <p>{{ el.location }}</p>
               <p> {{ el.favoriteDrink }}</p>
               <p>{{ el.note }}</p>
               <p>{{ el.owner }}</p>
-               <app-post-comments [owner]="ID"></app-post-comments>
+
+              <app-post-comments [owner]="ID"></app-post-comments>
+              <div *ngIf= "activeShop.coffee" >
+                  <mat-accordion  >
+                    <div *ngIf="el.id===activeShop.coffee.id">
+                     <mat-expansion-panel *ngFor="let comment of activeShop.coffee.comments"  >
+                       <mat-expansion-panel-header> 
+                         <p >{{comment.name}}:</p>
+                       </mat-expansion-panel-header>
+                       <p>{{comment.comment}}</p>
+                     </mat-expansion-panel>
+                   </div>
+                   </mat-accordion>
+                 </div>
+
               <app-comment-lists></app-comment-lists>
               
           <div *ngIf="role === 'admin'|| el.userId === ID">
