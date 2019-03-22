@@ -78,11 +78,18 @@
   *ngFor="let el of shops"
 >
       <div class="card" >
+<<<<<<< HEAD
+          <div class="cardContainer" (keyup)="myShop(el.id)">
+              <p 
+                > {{ el.id }}</p>
+              <h1 >{{ el.name }}</h1>
+=======
 
           <div class="cardContainer" (keyup)="myShop(el.id)">
               <!-- <p> {{ el.id }}</p> -->
               <h1>{{ el.name }}</h1>
 
+>>>>>>> c22463830f301e7b9e5231b303742869774718dd
               <p>{{ el.location }}</p>
               <p> {{ el.favoriteDrink }}</p>
               <p>{{ el.note }}</p>
