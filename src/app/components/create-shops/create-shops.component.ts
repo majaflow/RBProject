@@ -17,6 +17,7 @@ export class CreateShopsComponent implements OnInit {
   ID = Number(localStorage.getItem('id'))
   role = localStorage.getItem('role')
   activeShop = {}
+  comment: string
   
   constructor(private fb: FormBuilder, 
     private shopsService: ShopsService, 
@@ -32,7 +33,7 @@ export class CreateShopsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.userService.id)
+    
     
     
     
@@ -68,12 +69,12 @@ export class CreateShopsComponent implements OnInit {
   myShop(id) {
     console.log(id)
     this.shopsService.setshopID(id)
-    this.getSingle(id);
+    this.getSingle()
   }
 
-  getSingle(shopId) {
-    this.shopsService.getSingle(shopId).subscribe()
-    this.shopsService.getSingle(shopId).subscribe(data => {
+  getSingle() {
+    this.shopsService.getSingle().subscribe()
+    this.shopsService.getSingle().subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
       // Open Dialogue here (material dialogue???)
@@ -84,19 +85,35 @@ export class CreateShopsComponent implements OnInit {
     this.shopsService.setshopID(id)
     this.shopsService.deleteShops()
     this.findShops()
+    window.location.href='/shops';
   }
-  updateShop(id) {
+  updateShop(id:number) {
     console.log(id)
     let UpdatedShop = {
+
    coffee:{ id:  id,
     owner: this.ID,
     rating:  5}
+
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
+    window.location.href='/shops';
     console.log(Shop)
     })
     
-  }
 
 }
+
+updateComment(id){
+  let  updata = {
+     id: id,
+     comment: this.comment
+   }
+   this.shopsService.updateShops(updata)
+   this.findShops()
+ }
+
+}
+
+

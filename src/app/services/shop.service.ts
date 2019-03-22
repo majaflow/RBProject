@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
-import {Comments} from '../models/comment'
+import {Comments} from '../models/comment';
+import { UserService } from './user.service';
 
-const httpOptions = {
+let httpOptions = {
   headers: new HttpHeaders({
     'Content-type' : 'application/json',
-    'Authorization' : localStorage.getItem('token')
+     Authorization : localStorage.getItem('token')
   })
 }
 
@@ -16,10 +17,13 @@ const httpOptions = {
 export class ShopsService {
   private shopUrl = "https://coffeeredbadgeserver.herokuapp.com/coffee/";
   private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
+  
   public shopID : number
   commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
   constructor(
-    private http: HttpClient) { }
+
+    private http: HttpClient, private userService: UserService) { }
+
 
 
 getShops() {
@@ -29,14 +33,24 @@ setshopID(value : number) {
 this.shopID = value
 }
 
-getSingle(shopId) {
-  return this.http.get(`${this.shopUrl}${shopId}`)
+getSingle() {
+  return this.http.get(`${this.shopUrl}${this.shopID}`)
 }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
   return this.http.post<Shops[]>(this.createUrl, shops, httpOptions);
 }
 deleteShops() {
+  if(this.userService.role === 'admin') {
+    window.location.href='/shops';
+    fetch(`${this.shopUrl}${this.shopID}/admin`,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': localStorage.getItem('token')
+      }
+    })
+  } else {
   fetch(`${this.shopUrl}${this.shopID}`,{
     method: 'DELETE',
     headers: {
@@ -44,16 +58,24 @@ deleteShops() {
       'authorization': localStorage.getItem('token')
     }
   })
+}
   console.log(`${this.shopUrl}${this.shopID}`)
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
+
   console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+
 }
 getComment() {
   return this.http.get(this.commentUrl)
 }
+
+updateComment(data){
+  return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.id}`,data,httpOptions)
+ }
+
 
 
 
@@ -67,6 +89,7 @@ postComment(comment) {
   // })
 
   // console.log('comment :', comment)
+  console.log("token =>", localStorage.getItem('token'));
   return this.http.post<any>(`${this.commentUrl}${this.shopID}/comment/create`, comment, httpOptions);
   }
 }

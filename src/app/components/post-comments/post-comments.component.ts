@@ -11,6 +11,8 @@ import {Comments} from '../../models/comment'
 export class PostCommentsComponent implements OnInit {
 
 str : string
+
+
 @Input() owner : number
 createComments= new Comments
 comments = [];
@@ -47,6 +49,7 @@ comments = [];
 //     }
 
   onSubmitComment() {
+
     let commObj = {
       comment: this.str,
       rating: 5
@@ -55,6 +58,7 @@ comments = [];
     console.log('I am logging')
     this.shopService.postComment(commObj)
     .subscribe(data => {
+      window.location.href='/shops';
       console.log('Data:', data)
     })
   }
