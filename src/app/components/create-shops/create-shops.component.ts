@@ -24,7 +24,7 @@ export class CreateShopsComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.userService.id)
+    
     
    
     
@@ -60,12 +60,12 @@ export class CreateShopsComponent implements OnInit {
   myShop(id) {
     console.log(id)
     this.shopsService.setshopID(id)
-    this.getSingle(id);
+    this.getSingle()
   }
 
-  getSingle(shopId) {
-    this.shopsService.getSingle(shopId).subscribe()
-    this.shopsService.getSingle(shopId).subscribe(data => {
+  getSingle() {
+    this.shopsService.getSingle().subscribe()
+    this.shopsService.getSingle().subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
       // Open Dialogue here (material dialogue???)
@@ -78,12 +78,12 @@ export class CreateShopsComponent implements OnInit {
     this.findShops()
     window.location.href='/shops';
   }
-  updateShop(id) {
+  updateShop(id:number) {
     console.log(id)
     let UpdatedShop = {
     id:  id,
-    owner: this.ID,
-    rating:  5000
+    
+    note: 'trash'
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { PostService } from 'src/app/services/post-service.service';
+//import { PostService } from 'src/app/services/post-service.service';
+import { ShopsService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-comment-lists',
@@ -11,31 +12,29 @@ export class CommentListsComponent implements OnInit {
 
 
   commentForm;
-  newComment = [];
+  Comments = [];
 
   constructor(
-    private postService: PostService,
+    private shopService: ShopsService,
     private formBuilder: FormBuilder) 
     {
-    this.createCommentForm();
      }
 
-     createCommentForm() {
-       this.commentForm = this.formBuilder.group({comment: ['', Validators.compose([
-         Validators.required,
-         Validators.minLength(1),
-         Validators.maxLength(200)
-       ])]
-      })
-     }
+     
 
 
   ngOnInit() {
   }
 
-  postComment(id) {
+ findComments(){
+   
+//  this.shopService.getSingle().subscribe(shop => {
+//   this.Comments =Object.values(comments);
+//   this.Comments.reverse();
+//  console.log(comments);)
+ }
      
 
      
-  }
+  
 }
