@@ -78,7 +78,7 @@
   *ngFor="let el of shops"
 >
       <div class="card" >
-          <div class="cardContainer" (keyup)="myShop(el.id)">
+          <div class="cardContainer" (mouseenter)="myShop(el.id)">
               <!-- <p> {{ el.id }}</p> -->
               <h1>{{ el.name }}</h1>
               <p>{{ el.location }}</p>
@@ -93,10 +93,14 @@
                     <div *ngIf="el.id===activeShop.coffee.id">
                      <mat-expansion-panel *ngFor="let comment of activeShop.coffee.comments"  >
                        <mat-expansion-panel-header> 
-                         <p >{{comment.name}}:</p>
+                          <p (click)="commentId(comment.id)">{{comment.name}}:</p>
+                         <!-- <p >{{comment.name}}:</p> -->
                        </mat-expansion-panel-header>
                        <div *ngIf="comment.owner === ID; else elseBlock">
-                         <p>{{comment.comment}}</p> 
+                          <input
+                          type="text"
+                         [(ngModel)]="myComment" placeholder="{{comment.comment}}">
+                         <!-- <p>{{comment.comment}}</p>  -->
                           <!-- <textarea
                           [(ngModel)]="">{{comment.comment}}</textarea>  -->
                           <button (click)="updateComment(comment.id)">edit</button>
