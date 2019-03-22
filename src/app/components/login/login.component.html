@@ -1,3 +1,37 @@
-<p>
-  login works!
-</p>
+<div class="login">
+    <div class="container">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="email">Email Address
+                </label>
+                <input
+                    [(ngModel)]="UserData.email"
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    placeholder="Enter Your Email"
+                    required="required"></div>
+
+                <div class="form-group">
+                    <label for="password">Password
+                    </label>
+                    <input
+                        [(ngModel)]="UserData.password"
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        placeholder="Enter Your Password"
+                        required="required"></div>
+
+                    <button type="button" class="btn btn-success" (click)="onLogin()" routerLink="shops" routerLinkActive="active">Login</button>
+                    <p></p>
+                   <p>Don't have an account?</p>
+                    <div>
+                    <button type="button" class="btn btn-success" routerLink="/signup" routerLinkActive="active">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+<!-- <a class="nav-item nav-link" routerLink="shops" routerLinkActive="active"></a> -->
