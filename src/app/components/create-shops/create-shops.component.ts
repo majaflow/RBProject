@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatBottomSheet, MatBottomSheetRef, MatBottomSheetModule } from '@angular/material';
+import { BottomModalComponent } from '../bottom-modal/bottom-modal.component';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-shops',
@@ -18,21 +21,28 @@ export class CreateShopsComponent implements OnInit {
   activeShop = {}
   myComment: string
   
+
   constructor(
     private fb: FormBuilder, 
     private shopsService: ShopsService, 
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private bottomSheet: MatBottomSheet
     ) {
+
     setTimeout(() => {
       this.useBtn = true;
     },) 
    }
+   
+   openBottomSheet(): void {
+    this.bottomSheet.open(BottomModalComponent)
+  }
 
   ngOnInit() {
-    console.log(this.userService.id)
     
-   
+    
+    
     
     this.createShops = this.fb.group({
       id: null,
@@ -66,12 +76,12 @@ export class CreateShopsComponent implements OnInit {
   myShop(id) {
     console.log(id)
     this.shopsService.setshopID(id)
-    this.getSingle(id);
+    this.getSingle()
   }
 
-  getSingle(shopId) {
-    this.shopsService.getSingle(shopId).subscribe()
-    this.shopsService.getSingle(shopId).subscribe(data => {
+  getSingle() {
+    this.shopsService.getSingle().subscribe()
+    this.shopsService.getSingle().subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
       // Open Dialogue here (material dialogue???)
@@ -86,12 +96,14 @@ export class CreateShopsComponent implements OnInit {
     // this.router.navigateByUrl('/shops')
     // window.location.href='/shops';
   }
-  updateShop(id) {
+  updateShop(id:number) {
     console.log(id)
     let UpdatedShop = {
-    id:  id,
+
+   coffee:{ id:  id,
     owner: this.ID,
-    rating:  5000
+    rating:  5}
+
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
@@ -99,6 +111,7 @@ export class CreateShopsComponent implements OnInit {
     console.log(Shop)
     })
     
+
 }
 
   deleteComment(id) {
@@ -118,6 +131,13 @@ export class CreateShopsComponent implements OnInit {
      console.log(updata)
      this.findShops()
    }
+
+   this.shopsService.updateShops(updata)
+   this.findShops()
+ }
+
+}
+
   }
 
 // updateComment(id){
@@ -129,5 +149,6 @@ export class CreateShopsComponent implements OnInit {
 //    this.findShops()
 //  }
 // }
+
 
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
-import {Comments} from '../models/comment'
+import {Comments} from '../models/comment';
 import { UserService } from './user.service';
 // import { routerNgProbeToken } from '@angular/router/src/router_module';
 
@@ -18,10 +18,13 @@ let httpOptions = {
 export class ShopsService {
   private shopUrl = "https://coffeeredbadgeserver.herokuapp.com/coffee/";
   private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
+  
   public shopID : number
   commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
   constructor(
+
     private http: HttpClient, private userService: UserService) { }
+
 
 
 getShops() {
@@ -31,8 +34,8 @@ setshopID(value : number) {
 this.shopID = value
 }
 
-getSingle(shopId) {
-  return this.http.get(`${this.shopUrl}${shopId}`)
+getSingle() {
+  return this.http.get(`${this.shopUrl}${this.shopID}`)
 }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
@@ -62,8 +65,10 @@ deleteShops() {
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
-  console.log(shops.id)
+
+  console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+
 }
 getComment() {
   return this.http.get(this.commentUrl)
@@ -115,6 +120,7 @@ testDelete() : Observable<any> {
     return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions)
   }
 } 
+
 
 
 postComment(comment) {
