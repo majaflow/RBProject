@@ -46,6 +46,8 @@ export class UserService {
         localStorage.setItem('role', user.user.role)
         this.role= localStorage.getItem('role')
         this.id= Number(localStorage.getItem('id'))
+        this.role = localStorage.getItem('role')
+        window.location.href='/home';
       }
       console.log(user.user.id)
       console.log(this.id)
@@ -62,8 +64,10 @@ export class UserService {
         localStorage.setItem('token',user.sessionToken)
         localStorage.setItem('id',user.user.id)
         localStorage.setItem('role', user.user.role)
-        this.id=Number(localStorage.getItem('id'))
-        this.role= localStorage.getItem('role')
+        this.id= Number(localStorage.getItem('id'))
+        this.role = localStorage.getItem('role')
+        window.location.href='/home';
+
       }
       return user
     }))

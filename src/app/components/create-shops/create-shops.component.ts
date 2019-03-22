@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
@@ -18,24 +19,23 @@ export class CreateShopsComponent implements OnInit {
   comment: string
   
   constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
-
     setTimeout(() => {
       this.useBtn = true;
     },) 
    }
 
   ngOnInit() {
-    
+    console.log(this.userService.id)
     
    
     
     this.createShops = this.fb.group({
-    
+      id: null,
       name: new FormControl(),
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-    
+      owner: Number(localStorage.getItem('id')),
       rating: new FormControl()
     })
   
@@ -61,12 +61,12 @@ export class CreateShopsComponent implements OnInit {
   myShop(id) {
     console.log(id)
     this.shopsService.setshopID(id)
-    this.getSingle()
+    this.getSingle(id);
   }
 
-  getSingle() {
-    this.shopsService.getSingle().subscribe()
-    this.shopsService.getSingle().subscribe(data => {
+  getSingle(shopId) {
+    this.shopsService.getSingle(shopId).subscribe()
+    this.shopsService.getSingle(shopId).subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
       // Open Dialogue here (material dialogue???)
@@ -77,30 +77,29 @@ export class CreateShopsComponent implements OnInit {
     this.shopsService.setshopID(id)
     this.shopsService.deleteShops()
     this.findShops()
+    window.location.href='/shops';
   }
-  updateShop(id:number) {
+  updateShop(id) {
     console.log(id)
     let UpdatedShop = {
     id:  id,
-    
-    note: 'trash'
+    owner: this.ID,
+    rating:  5000
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
+    window.location.href='/shops';
     console.log(Shop)
     })
     
 }
-  deleteComment(id){
-    this.shopsService.deleteComment(id)
-    this.findShops()
-  }
-  updateComment(id){
-   let  updata = {
-      id: id,
-      comment: this.comment
-    }
-    this.shopsService.updateShops(updata)
-    this.findShops()
-  }
+
+updateComment(id){
+  let  updata = {
+     id: id,
+     comment: this.comment
+   }
+   this.shopsService.updateShops(updata)
+   this.findShops()
+ }
 }
