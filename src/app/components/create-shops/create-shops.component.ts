@@ -15,8 +15,10 @@ export class CreateShopsComponent implements OnInit {
   ID = Number(localStorage.getItem('id'))
   role = localStorage.getItem('role')
   activeShop = {}
+  comment: string
   
   constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
+
     setTimeout(() => {
       this.useBtn = true;
     },) 
@@ -28,12 +30,12 @@ export class CreateShopsComponent implements OnInit {
    
     
     this.createShops = this.fb.group({
-      id: null,
+    
       name: new FormControl(),
       location: new FormControl(),
       favoriteDrink: new FormControl(),
       note: new FormControl(),
-      owner: Number(localStorage.getItem('id')),
+    
       rating: new FormControl()
     })
   
@@ -89,4 +91,16 @@ export class CreateShopsComponent implements OnInit {
     })
     
 }
+  deleteComment(id){
+    this.shopsService.deleteComment(id)
+    this.findShops()
+  }
+  updateComment(id){
+   let  updata = {
+      id: id,
+      comment: this.comment
+    }
+    this.shopsService.updateShops(updata)
+    this.findShops()
+  }
 }

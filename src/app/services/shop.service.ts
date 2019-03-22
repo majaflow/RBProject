@@ -56,8 +56,30 @@ updateShops(shops: any) : Observable<any> {
 getComment() {
   return this.http.get(this.commentUrl)
 }
+deleteComment(id){
+  if (localStorage.getItem('role')==='admin') {
+    fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}/admin`,{
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': localStorage.getItem('token')
+    }
+  })
+  }
+  else{
+  fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}`,{
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': localStorage.getItem('token')
+    }
+  })
+}
 
-
+}
+updateComment(data){
+ return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.id}`,data,httpOptions)
+}
 
 
 postComment(comment) {
