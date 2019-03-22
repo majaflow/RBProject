@@ -32,36 +32,6 @@
       name="note"
       required
     >
-    <!-- <option
-      *ngFor="let g of genres"
-      value="{{ g }}">
-      {{ g }}
-      </option> -->
-
-    
-
-
-    <!-- <label for="owner">owner</label>
-    <input
-      formControlName = "owner"
-      type="text"
-      name="owner"
-      required
-    > -->
-
-    <!-- <label for="rating">Rating</label>
-    <select
-      formControlName = "rating"
-      name="rating"
-      required
-    >
-    <option
-      *ngFor="let rating of ratings"
-      value="{{ rating.value }}">
-      {{ rating.view }}
-    </option>
-  
-    </select> -->
 
     <button
       [disabled]="!useBtn"
@@ -79,7 +49,7 @@
 >
       <div class="card" >
 
-          <div class="cardContainer" (keyup)="myShop(el.id)">
+          <div class="cardContainer" (mouseenter)="myShop(el.id)">
               <!-- <p> {{ el.id }}</p> -->
               <h1>{{ el.name }}</h1>
 
@@ -99,9 +69,11 @@
                          <p >{{comment.name}}:</p>
                        </mat-expansion-panel-header>
                        <div *ngIf="comment.owner === ID; else elseBlock">
-                         <p>{{comment.comment}}</p> 
-                          <!-- <textarea
-                          [(ngModel)]="">{{comment.comment}}</textarea>  -->
+                         
+                           <input
+                           type="text"
+                          [(ngModel)]="myComment"
+                          placeholder="{{comment.comment}}">
                           <button (click)="updateComment(comment.id)">edit</button>
                         </div>
                         <ng-template #elseBlock>{{comment.comment}}</ng-template>

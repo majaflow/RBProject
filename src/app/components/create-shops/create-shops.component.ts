@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +15,8 @@ export class CreateShopsComponent implements OnInit {
   ID = Number(localStorage.getItem('id'))
   role = localStorage.getItem('role')
   activeShop = {}
-  comment: string
+  
+  myComment: string
   
   constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
     setTimeout(() => {
@@ -92,13 +93,20 @@ export class CreateShopsComponent implements OnInit {
     })
     
 }
-
+deleteComment(id){
+  this.shopsService.deleteCommment(id)
+  this.findShops()
+}
 updateComment(id){
   let  updata = {
-     id: id,
-     comment: this.comment
+    comment: {
+       id: id,
+     comment: this.myComment,
+    //  owner: Number(localStorage.getItem('id'))
+    }
    }
-   this.shopsService.updateShops(updata)
+   this.shopsService.updateComment(updata)
+   console.log(updata)
    this.findShops()
  }
 }
