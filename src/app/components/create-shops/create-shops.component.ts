@@ -15,6 +15,7 @@ export class CreateShopsComponent implements OnInit {
   ID = Number(localStorage.getItem('id'))
   role = localStorage.getItem('role')
   activeShop = {}
+  comment: string
   
   constructor(private fb: FormBuilder, private shopsService: ShopsService, private userService: UserService) {
     setTimeout(() => {
@@ -91,5 +92,15 @@ export class CreateShopsComponent implements OnInit {
     })
     
 }
+
+updateComment(id){
+  let  updata = {
+     id: id,
+     comment: this.comment
+   }
+   this.shopsService.updateShops(updata)
+   this.findShops()
+ }
 }
+
 

@@ -67,6 +67,10 @@ getComment() {
   return this.http.get(this.commentUrl)
 }
 
+updateComment(data){
+  return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.id}`,data,httpOptions)
+ }
+
 
 
 postComment(comment) {

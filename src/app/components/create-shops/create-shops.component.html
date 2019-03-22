@@ -87,6 +87,7 @@
               <p>{{ el.owner }}</p>
 
               <app-post-comments [owner]="ID"></app-post-comments>
+
               <div *ngIf= "activeShop.coffee" >
                   <mat-accordion  >
                     <div *ngIf="el.id===activeShop.coffee.id">
@@ -94,13 +95,23 @@
                        <mat-expansion-panel-header> 
                          <p >{{comment.name}}:</p>
                        </mat-expansion-panel-header>
-                       <p>{{comment.comment}}</p>
+                       <div *ngIf="comment.owner === ID; else elseBlock">
+                         <p>{{comment.comment}}</p> 
+                          <!-- <textarea
+                          [(ngModel)]="">{{comment.comment}}</textarea>  -->
+                          <button (click)="updateComment(comment.id)">edit</button>
+                        </div>
+                        <ng-template #elseBlock>{{comment.comment}}</ng-template>
+                          
+                          <div *ngIf="comment.owner === ID || role === 'admin'">
+                            <button (click)="deleteComment(comment.id)">x</button>
+                      </div>
                      </mat-expansion-panel>
-                   </div>
+                    </div>
                    </mat-accordion>
                  </div>
 
-              <app-comment-lists></app-comment-lists>
+              <!-- <app-comment-lists></app-comment-lists> -->
               
           <div *ngIf="role === 'admin'|| el.userId === ID">
               <button (click)="deleteShop(el.id)">delete</button>
@@ -110,6 +121,7 @@
       
           </div>
       </div>
-  </div>
+  </div> 
 </div>
+
 
