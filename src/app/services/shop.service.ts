@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
 import {Comments} from '../models/comment';
 import { UserService } from './user.service';
+// import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { APIURL } from '../../environments/environment.prod';
 
 let httpOptions = {
   headers: new HttpHeaders({
@@ -15,11 +17,11 @@ let httpOptions = {
 @Injectable()
 
 export class ShopsService {
-  private shopUrl = "https://coffeeredbadgeserver.herokuapp.com/coffee/";
-  private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
+  private shopUrl = (`${APIURL}/coffee`);
+  private createUrl =(`${APIURL}/coffee/create`);
   
   public shopID : number
-  commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
+  commentUrl = (`${APIURL}/coffee`)
   constructor(
 
     private http: HttpClient, private userService: UserService) { }
@@ -42,7 +44,7 @@ makeShops(shops: Shops) : Observable<Shops[]> {
 }
 deleteShops() {
   if(localStorage.getItem('role') === 'admin') {
-    //window.location.href='/shops';
+    // window.location.href='/shops';
     fetch(`${this.shopUrl}${this.shopID}/admin`,{
       method: 'DELETE',
       headers: {
@@ -51,21 +53,23 @@ deleteShops() {
       }
     }).then(res=> console.log(res)).then()
   } else {
-   // window.location.href='/shops';
-  fetch(`${this.shopUrl}${this.shopID}`,{
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'authorization': localStorage.getItem('token')
-    }
-  }).then(res=> console.log(res))
+    // window.location.href='/shops';
+    fetch(`${this.shopUrl}${this.shopID}`,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': localStorage.getItem('token')
+      }
+    })
 }
   console.log(`${this.shopUrl}${this.shopID}`)
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
-  console.log(shops.id)
-  return this.http.put<any>(`${this.shopUrl}${shops.id}`, shops, httpOptions);
+
+  console.log(shops)
+  return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+
 }
 getComment() {
   return this.http.get(this.commentUrl)
@@ -75,7 +79,7 @@ updateComment(data){
   // data.owner= Number(localStorage.getItem('id'))
   console.log('my comment data:',data)
   //return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/77`,data,httpOptions)
-  return fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.comment.id}`,{
+  return fetch(`${APIURL}/comment/${data.comment.id}`,{
     method: 'PUT',
     body: JSON.stringify(data),
     headers: {
@@ -84,10 +88,15 @@ updateComment(data){
     }
   }).then(res=>console.log(res))
  }
-deleteCommment(id){
+
+// updateComment(data){
+//   return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.id}`,data,httpOptions)
+//  }
+
+ deleteCommment(id){
   if(localStorage.getItem('role') === 'admin') {
     //window.location.href='/shops';
-    fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}/admin`,{
+    fetch(`${APIURL}/comment/${id}/admin`,{
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +104,7 @@ deleteCommment(id){
       }
     }).then(res=> console.log(res))
   } else {
-  fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}`,{
+  fetch(`${APIURL}/comment/${id}`,{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -104,6 +113,14 @@ deleteCommment(id){
   }).then(res=> console.log(res))}
 //return this.http.delete(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}`,httpOptions)
 }
+
+testDelete() : Observable<any> {
+  if(localStorage.getItem('role') === 'admin') {
+    return this.http.delete(`${this.shopUrl}${this.shopID}/admin`, httpOptions)
+  } else {
+    return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions)
+  }
+} 
 
 
 

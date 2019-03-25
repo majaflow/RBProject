@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders} from '@angular/common/http'
 import {map} from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
+import { APIURL } from '../../environments/environment.prod';
 
 
 const httpOptions ={
@@ -15,7 +16,7 @@ const httpOptions ={
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'https://coffeeredbadgeserver.herokuapp.com/'
+  private baseUrl = (`${APIURL}`)
   private logIn = 'user/signin'
   private signUp = 'user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
