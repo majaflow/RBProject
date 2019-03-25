@@ -4,7 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatBottomSheetModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
 import { DisplayShopsComponent } from './display-shops/display-shops.component';
 import { CommentListsComponent } from './components/comment-lists/comment-lists.component';
 import { AuthGuard } from './services/auth.guard';
+import { BottomModalComponent } from './components/bottom-modal/bottom-modal.component';
 
 
  
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
     SignupComponent,
     CreateShopsComponent,
     DisplayShopsComponent,
-    CommentListsComponent
+    CommentListsComponent,
+    BottomModalComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -94,7 +96,11 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule ,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatBottomSheetModule
+  ],
+  entryComponents: [
+    BottomModalComponent
   ],
   providers: [ShopsService, HttpClient, AuthGuard],
   bootstrap: [AppComponent]

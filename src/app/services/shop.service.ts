@@ -60,8 +60,12 @@ deleteShops() {
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
-  console.log(shops.id)
+
+
+  console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+
+
 }
 getComment() {
   return this.http.get(this.commentUrl)
