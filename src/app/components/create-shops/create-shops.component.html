@@ -1,0 +1,118 @@
+<form 
+  [formGroup] = "createShops"
+  (ngSubmit)= "onCreateShops()"
+  >
+
+  <h3>Tell us about your favorite coffee shop to code at!</h3>
+    <hr>
+    <label for="name" class="name">Name of your favorite shop:</label>
+    <!-- <label for="name">Name of Shop</label> -->
+    <input
+      formControlName = "name"
+      type="text"
+      name="name"
+      required
+    >
+
+    <label for="location" class="name">Where is it located?</label>
+    <!-- <label for="location">Location</label> -->
+    <input
+      formControlName = "location"
+      type="text"
+      name="location"
+      required
+    >
+
+    <hr>
+    <label for="favoriteDrink" class="name">Your favorite drink here?</label>
+    <!-- <label for="favoriteDrink">Favorite Drink</label> -->
+    <input
+      formControlName = "favoriteDrink"
+      type="text"
+      name="favoriteDrink"
+      required
+    >
+
+    &nbsp;
+    &nbsp;
+    <label for="note" class="name" >Why do you like to Code Here?</label>
+    <!-- <label for="note">Note</label> -->
+    <input
+      formControlName = "note"
+      name="note"
+      required
+    >
+
+    <button
+      [disabled]="!useBtn"
+      type="submit"
+      >
+      {{ useBtn === false ? "Think About a Shop" : "Add a Shop" }}
+      </button>
+</form> 
+
+
+<div *ngIf="shops.length !== 0; else noShops">
+
+  <div class="deck"
+  *ngFor="let el of shops"
+>
+      <div class="card" >
+
+          <div class="cardContainer" (mouseenter)="myShop(el.id)">
+              <!-- <p> {{ el.id }}</p> -->
+              <h1>{{ el.name }}</h1>
+
+              <p>{{ el.location }}</p>
+              <p> {{ el.favoriteDrink }}</p>
+              <p>{{ el.note }}</p>
+              <p>{{ el.owner }}</p>
+
+
+              <app-post-comments [owner]="ID"></app-post-comments>
+
+              <div *ngIf= "activeShop.coffee" >
+                  <mat-accordion  >
+                    <div *ngIf="el.id===activeShop.coffee.id">
+                     <mat-expansion-panel *ngFor="let comment of activeShop.coffee.comments"  >
+                       <mat-expansion-panel-header> 
+                          <p (click)="commentId(comment.id)">{{comment.name}}:</p>
+                         <!-- <p >{{comment.name}}:</p> -->
+                       </mat-expansion-panel-header>
+                       <div *ngIf="comment.owner === ID; else elseBlock">
+                          <input
+                          type="text"
+                         [(ngModel)]="myComment" placeholder="{{comment.comment}}">
+                         <!-- <p>{{comment.comment}}</p>  -->
+                          <!-- <textarea
+                          [(ngModel)]="">{{comment.comment}}</textarea>  -->
+                          <button (click)="updateComment(comment.id)">edit</button>
+                        </div>
+                        <ng-template #elseBlock>{{comment.comment}}</ng-template>
+                          
+                          <div *ngIf="comment.owner === ID || role === 'admin'">
+                            <button (click)="deleteComment(comment.id)">x</button>
+                      </div>
+                     </mat-expansion-panel>
+                    </div>
+                   </mat-accordion>
+                 </div>
+
+              <!-- <app-comment-lists></app-comment-lists> -->
+
+              
+
+          <div *ngIf="role === 'admin'|| el.userId === ID">
+              <button (click)="deleteShop(el.id)">delete</button>
+          </div>
+              
+          <!-- <button (click)="updateShop(el.id)">update</button> -->
+          <button (click)="openBottomSheet()">Edit Shop</button>  
+          
+
+          
+      </div>
+  </div> 
+</div>
+
+

@@ -1,0 +1,21 @@
+.login {
+    border: solid 1px black;
+    width: 50vw;
+    height: 55vh;
+    text-align: center;
+    padding: 3em;
+    box-shadow: 5px 10px 8px #888888;
+    margin: 10em 0 0 20em;
+    background-color: white;
+
+}
+
+.image{
+    /* height:40em;  */
+    /* background-size:cover;  */
+    width:auto;
+    background-image:url('../../../assets/coffeedrip.jpg');
+    /* background-position:50% 50%; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }

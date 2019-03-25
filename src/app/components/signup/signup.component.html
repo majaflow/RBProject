@@ -1,0 +1,89 @@
+<!-- <div class="signup">
+<div class="container">
+  <h1>Sign Up</h1>
+  <form (submit)="onSignup($event)">
+      <div class="form-group">
+          <label [(ngModel)]="UserData.firstName" for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName">
+        </div>
+
+        <div class="form-group">
+            <label [(ngModel)]="UserData.lastName" for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName">
+          </div>
+
+    <div class="form-group">
+      <label [(ngModel)]="UserData.email" for="email">Email</label>
+      <input type="text" class="form-control" id="email" required>
+    </div>
+
+    <div class="form-group">
+      <label [(ngModel)]="UserData.password" for="password">Password</label>
+      <input type="text" class="form-control" id="password">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>
+</div> -->
+
+<div class="image">
+<div class="signup">
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form>
+            <div class="form-group">
+                <label for="firstName">First Name
+                </label>
+                <input
+                    [(ngModel)]="UserData.firstName"
+                    type="text"
+                    class="form-control"
+                    name="firstName"
+                    placeholder="First Name"
+                    required="required"></div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name
+                    </label>
+                    <input
+                        [(ngModel)]="UserData.lastName"
+                        type="text"
+                        class="form-control"
+                        name="lastName"
+                        placeholder="Last Name"
+                        required="required"></div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address
+                        </label>
+                        <input
+                            [(ngModel)]="UserData.email"
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            placeholder="Enter Your Email"
+                            required="required"></div>
+
+                        <div class="form-group">
+                            <label for="password">Password
+                            </label>
+                            <input
+                                [(ngModel)]="UserData.password"
+                                type="password"
+                                minLength="5"
+                                class="form-control"
+                                name="password"
+                                placeholder="Enter a Memorable Password"
+                                required="required"></div>
+
+                            <button type="button" class="btn btn-success" (click)="onSignup()" routerLink="shops" routerLinkActive="active">
+                                Sign Up</button>
+
+                                
+
+                        </form>
+                    </div>
+                </div>
+            </div>

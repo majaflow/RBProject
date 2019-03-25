@@ -1,0 +1,41 @@
+/* .body {
+    border: solid 1px black;
+    background-color: white;
+}
+
+.body img {
+    margin-top: px;
+    z-index: -1;
+} */
+
+/* .body {
+    border: solid 1px black;
+    background-color: white;
+}
+
+.body img {
+    margin-top: px;
+    z-index: -1;
+} */
+
+body{
+    /* height:40em;  */
+    /* background-size:cover;  */
+    width:auto;
+    background-image:url('../../../assets/coffeedrip.jpg');
+    /* background-position:50% 50%; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  h1 {
+      color: white;
+      text-align: center;
+      font-size: 100px;
+  }
+
+  .blurb {
+      color: white;
+      text-align: center;
+      font-size: 30px;
+  }

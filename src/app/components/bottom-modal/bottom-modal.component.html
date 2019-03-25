@@ -1,0 +1,51 @@
+<form>
+    <div class="form-group">
+        <label for="name">Name of Shop</label>
+        <input
+          [(ngModel)]= 'name'
+          type="text"
+          name="name"
+          class="form-control"
+          ngModel
+          required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input
+        [(ngModel)]= 'loc'
+          type="text"
+          name="location"
+          class="form-control"
+          required
+          
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="favoriteDrink">Favorite Drink</label>
+        <input
+        [(ngModel)]= 'favDr'
+          type="text"
+          name="favoriteDrink"
+          class="form-control"
+          required
+          
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="note">Note</label>
+        <input
+        [(ngModel)]= 'note'
+          name="note"
+          class="form-control"
+          required
+          
+        >
+    </div>
+
+</form>
+
+  <button (click)="updateShops()">update</button>

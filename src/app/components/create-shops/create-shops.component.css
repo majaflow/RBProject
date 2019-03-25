@@ -1,0 +1,80 @@
+/* .deck {
+    display: inline-block;
+}
+
+.card {
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    transition: 1.5s;
+    width: 30vw;
+    margin: 1rem;
+    text-align: center;
+    background-color: rgb(123, 126, 129);
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 0.5em 0.5em 2em rgba(0, 0, 0, 0.2);
+}
+
+.cardContainer {
+    padding: 1em 2em;
+}
+
+.body {
+    background-color:lightgrey;
+}
+
+.name {
+    padding: 5px;
+    color: #F7F4F3;
+    position: center;
+  }
+
+  h3 {
+    color: #F7F4F3
+  } */
+
+  .deck {
+    display: inline-block;
+}
+.card {
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    transition: 1.5s;
+    width: 30vw;
+    margin: 3rem;
+    padding: 3rem;
+    text-align: center;
+    background-color: #C6AD94;
+    border-radius: 10px;
+}
+.card:hover {
+    box-shadow: 0.5em 0.5em 2em lightgrey;
+    background-color: burlywood;
+}
+.cardContainer {
+    padding: 1em 2em;
+    box-shadow: 0.5em 0.5em 2em lightgrey;
+}
+.body {
+    background-color:lightgrey;
+}
+.image{
+    /* height:40em;  */
+    /* background-size:cover;  */
+    width:auto;
+    background-image:url('../../../assets/coffeedrip.jpg');
+    /* background-position:50% 50%; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  h1 {
+    color: #F7F4F3;
+  }
+
+  h3 {
+      color: white;
+  }
+
+  .name {
+      color: white;
+  }

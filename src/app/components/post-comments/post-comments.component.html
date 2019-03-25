@@ -1,0 +1,19 @@
+<!-- <mat-card>
+  <mat-form-field>
+    <textarea matInput rows="6" [(ngModel)]="enteredValue "></textarea> 
+  </mat-form-field>
+</mat-card>
+<button mat-raised-button color="primary" (click)="onSubmitComment()">Submit</button>
+<p>{{ newComment }}</p>        -->
+
+
+
+    <label for="Comment">Comment</label>
+
+      <textarea [(ngModel)]="str"></textarea> 
+     
+
+    <button
+      (click)="onSubmitComment()"
+      type="submit"
+      >Submit</button>
