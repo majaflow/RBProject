@@ -52,10 +52,8 @@
 </form> 
 
 
-<div *ngIf="shops.length !== 0; else noShops">
-<ng-template #noShops>
-  <p>No Shops</p>
-</ng-template>
+<div *ngIf="shops.length !== 0; else null">
+
   <div class="deck"
   *ngFor="let el of shops"
 >
