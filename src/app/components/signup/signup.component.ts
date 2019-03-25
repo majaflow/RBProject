@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-// import { User } from '../../models/user'
+import { User } from '../../models/user'
 
 @Component({
   selector: 'app-signup',
@@ -8,9 +8,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  UserData = {
-
-  }
+  UserData = new User;
   constructor(private authService: UserService) { }
   
   ngOnInit() {
