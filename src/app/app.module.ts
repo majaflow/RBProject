@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShopsService } from './services/shop.service';
 import { CreateShopsComponent } from './components/create-shops/create-shops.component';
 import { HttpClient } from '@angular/common/http';
-// import { DisplayShopsComponent } from './display-shops/display-shops.component';
+import {DisplayShopsComponent} from './components/display-shops/display-shops.component'
 import { CommentListsComponent } from './components/comment-lists/comment-lists.component';
 import { AuthGuard } from './services/auth.guard';
 import { BottomModalComponent } from './components/bottom-modal/bottom-modal.component';
@@ -79,7 +79,7 @@ const appRoutes: Routes = [
     ContactComponent,
     SignupComponent,
     CreateShopsComponent,
-    // DisplayShopsComponent,
+    DisplayShopsComponent,
     CommentListsComponent,
     BottomModalComponent
   ],

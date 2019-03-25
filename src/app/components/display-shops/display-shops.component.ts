@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { ShopsService } from '../services/shop.service';
+import { UserService } from '../../services/user.service';
+import { ShopsService } from '../../services/shop.service';
 import { HttpClient } from "@angular/common/http"
 @Component({
     selector: 'app-display-shops',
