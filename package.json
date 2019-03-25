@@ -10,6 +10,9 @@
     "postinstall": "ng build --prod",
     "start": "serve -s dist/coffeecodeclient"
   },
+  "engines":{
+    "node": "10.15.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.10",
