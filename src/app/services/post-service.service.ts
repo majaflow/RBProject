@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Comments } from '../models/comment';
+import {APIURL} from '../../environments/environment.prod';
 
 
 const httpOptions = {
@@ -18,7 +19,7 @@ const httpOptions = {
 })
 export class PostService {
   // private getUrl = 'https://coffeeredbadgeserver.herokuapp.com/comment/owner'
-  private commentUrl = 'https://coffeeredbadgeserver.herokuapp.com/coffee/:coffeeId/comment/create'
+  private commentUrl = (`${APIURL}/coffee/:coffeeId/comment/create`)
 
 
   constructor(private http: HttpClient) { }

@@ -5,6 +5,7 @@ import { Shops } from '../models/shops';
 import {Comments} from '../models/comment';
 import { UserService } from './user.service';
 // import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { APIURL } from '../../environments/environment.prod';
 
 let httpOptions = {
   headers: new HttpHeaders({
@@ -16,11 +17,11 @@ let httpOptions = {
 @Injectable()
 
 export class ShopsService {
-  private shopUrl = "https://coffeeredbadgeserver.herokuapp.com/coffee/";
-  private createUrl ="https://coffeeredbadgeserver.herokuapp.com/coffee/create"
+  private shopUrl = (`${APIURL}/coffee`);
+  private createUrl =(`${APIURL}/coffee/create`);
   
   public shopID : number
-  commentUrl = `https://coffeeredbadgeserver.herokuapp.com/coffee/`
+  commentUrl = (`${APIURL}/coffee`)
   constructor(
 
     private http: HttpClient, private userService: UserService) { }
@@ -78,7 +79,7 @@ updateComment(data){
   // data.owner= Number(localStorage.getItem('id'))
   console.log('my comment data:',data)
   //return this.http.put(`https://coffeeredbadgeserver.herokuapp.com/comment/77`,data,httpOptions)
-  return fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${data.comment.id}`,{
+  return fetch(`${APIURL}/comment/${data.comment.id}`,{
     method: 'PUT',
     body: JSON.stringify(data),
     headers: {
@@ -95,7 +96,7 @@ updateComment(data){
  deleteCommment(id){
   if(localStorage.getItem('role') === 'admin') {
     //window.location.href='/shops';
-    fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}/admin`,{
+    fetch(`${APIURL}/comment/${id}/admin`,{
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ updateComment(data){
       }
     }).then(res=> console.log(res))
   } else {
-  fetch(`https://coffeeredbadgeserver.herokuapp.com/comment/${id}`,{
+  fetch(`${APIURL}/comment/${id}`,{
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
