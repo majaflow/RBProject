@@ -132,13 +132,12 @@ export class CreateShopsComponent implements OnInit {
      this.findShops()
    }
 
-   this.shopsService.updateShops(updata)
-   this.findShops()
- }
+//    this.shopsService.updateShops(updata)
+//    this.findShops()
+//  }
 
 }
-
-  }
+  
 
 // updateComment(id){
 //   let  updata = {
