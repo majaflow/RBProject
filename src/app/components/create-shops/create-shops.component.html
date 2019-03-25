@@ -2,7 +2,11 @@
   [formGroup] = "createShops"
   (ngSubmit)= "onCreateShops()"
   >
-    <label for="name">Name of Shop</label>
+
+  <h3>Tell us about your favorite coffee shop to code at!</h3>
+    <hr>
+    <label for="name" class="name">Name of your favorite shop:</label>
+    <!-- <label for="name">Name of Shop</label> -->
     <input
       formControlName = "name"
       type="text"
@@ -10,7 +14,8 @@
       required
     >
 
-    <label for="location">Location</label>
+    <label for="location" class="name">Where is it located?</label>
+    <!-- <label for="location">Location</label> -->
     <input
       formControlName = "location"
       type="text"
@@ -18,7 +23,9 @@
       required
     >
 
-    <label for="favoriteDrink">Favorite Drink</label>
+    <hr>
+    <label for="favoriteDrink" class="name">Your favorite drink here?</label>
+    <!-- <label for="favoriteDrink">Favorite Drink</label> -->
     <input
       formControlName = "favoriteDrink"
       type="text"
@@ -26,7 +33,10 @@
       required
     >
 
-    <label for="note">Note</label>
+    &nbsp;
+    &nbsp;
+    <label for="note" class="name" >Why do you like to Code Here?</label>
+    <!-- <label for="note">Note</label> -->
     <input
       formControlName = "note"
       name="note"
@@ -79,7 +89,7 @@
 >
       <div class="card" >
 
-          <div class="cardContainer" (keyup)="myShop(el.id)">
+          <div class="cardContainer" (mouseenter)="myShop(el.id)">
               <!-- <p> {{ el.id }}</p> -->
               <h1>{{ el.name }}</h1>
 
@@ -96,10 +106,14 @@
                     <div *ngIf="el.id===activeShop.coffee.id">
                      <mat-expansion-panel *ngFor="let comment of activeShop.coffee.comments"  >
                        <mat-expansion-panel-header> 
-                         <p >{{comment.name}}:</p>
+                          <p (click)="commentId(comment.id)">{{comment.name}}:</p>
+                         <!-- <p >{{comment.name}}:</p> -->
                        </mat-expansion-panel-header>
                        <div *ngIf="comment.owner === ID; else elseBlock">
-                         <p>{{comment.comment}}</p> 
+                          <input
+                          type="text"
+                         [(ngModel)]="myComment" placeholder="{{comment.comment}}">
+                         <!-- <p>{{comment.comment}}</p>  -->
                           <!-- <textarea
                           [(ngModel)]="">{{comment.comment}}</textarea>  -->
                           <button (click)="updateComment(comment.id)">edit</button>

@@ -24,3 +24,22 @@
 .body {
     background-color:lightgrey;
 }
+
+.image{
+    /* height:40em;  */
+    /* background-size:cover;  */
+    width:auto;
+    background-image:url('../../../assets/coffeedrip.jpg');
+    /* background-position:50% 50%; */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  h1 {
+      color: white;
+  }
+
+  h3 {
+      color: white;
+  }
+
