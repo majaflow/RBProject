@@ -1,4 +1,6 @@
+
 import { Component, OnInit, Input } from '@angular/core';
+
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShopsService } from '../../services/shop.service';
 import { UserService } from 'src/app/services/user.service';
@@ -40,7 +42,7 @@ export class CreateShopsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    console.log(this.userService.id)
     
     
     
@@ -76,12 +78,12 @@ export class CreateShopsComponent implements OnInit {
   myShop(id) {
     console.log(id)
     this.shopsService.setshopID(id)
-    this.getSingle()
+    this.getSingle(id);
   }
 
-  getSingle() {
-    this.shopsService.getSingle().subscribe()
-    this.shopsService.getSingle().subscribe(data => {
+  getSingle(shopId) {
+    this.shopsService.getSingle(shopId).subscribe()
+    this.shopsService.getSingle(shopId).subscribe(data => {
       this.activeShop = data
       console.log(this.activeShop)
       // Open Dialogue here (material dialogue???)
@@ -96,13 +98,15 @@ export class CreateShopsComponent implements OnInit {
     // this.router.navigateByUrl('/shops')
     // window.location.href='/shops';
   }
-  updateShop(id:number) {
+  updateShop(id) {
     console.log(id)
     let UpdatedShop = {
+
 
    coffee:{ id:  id,
     owner: this.ID,
     rating:  5}
+
 
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
@@ -136,6 +140,7 @@ export class CreateShopsComponent implements OnInit {
 //    this.findShops()
 //  }
 
+
 }
   
 
@@ -148,6 +153,7 @@ export class CreateShopsComponent implements OnInit {
 //    this.findShops()
 //  }
 // }
+
 
 
 

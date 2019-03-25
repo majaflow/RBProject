@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
-import {Comments} from '../models/comment';
+import {Comments} from '../models/comment'
 import { UserService } from './user.service';
 // import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { APIURL } from '../../environments/environment.prod';
@@ -17,15 +17,15 @@ let httpOptions = {
 @Injectable()
 
 export class ShopsService {
+
   private shopUrl = (`${APIURL}/coffee`);
   private createUrl =(`${APIURL}/coffee/create`);
   
+
   public shopID : number
   commentUrl = (`${APIURL}/coffee`)
   constructor(
-
     private http: HttpClient, private userService: UserService) { }
-
 
 
 getShops() {
@@ -35,8 +35,8 @@ setshopID(value : number) {
 this.shopID = value
 }
 
-getSingle() {
-  return this.http.get(`${this.shopUrl}${this.shopID}`)
+getSingle(shopId) {
+  return this.http.get(`${this.shopUrl}${shopId}`)
 }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
@@ -67,8 +67,10 @@ deleteShops() {
 }
 updateShops(shops: any) : Observable<any> {
 
+
   console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
+
 
 }
 getComment() {
@@ -121,7 +123,6 @@ testDelete() : Observable<any> {
     return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions)
   }
 } 
-
 
 
 postComment(comment) {
