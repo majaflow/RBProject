@@ -42,36 +42,6 @@
       name="note"
       required
     >
-    <!-- <option
-      *ngFor="let g of genres"
-      value="{{ g }}">
-      {{ g }}
-      </option> -->
-
-    
-
-
-    <!-- <label for="owner">owner</label>
-    <input
-      formControlName = "owner"
-      type="text"
-      name="owner"
-      required
-    > -->
-
-    <!-- <label for="rating">Rating</label>
-    <select
-      formControlName = "rating"
-      name="rating"
-      required
-    >
-    <option
-      *ngFor="let rating of ratings"
-      value="{{ rating.value }}">
-      {{ rating.view }}
-    </option>
-  
-    </select> -->
 
     <button
       [disabled]="!useBtn"
@@ -82,7 +52,7 @@
 </form> 
 
 
-<div *ngIf="shops.length !== 0; else noShops">
+<div *ngIf="shops.length !== 0; else null">
 
   <div class="deck"
   *ngFor="let el of shops"
@@ -120,7 +90,7 @@
                         </div>
                         <ng-template #elseBlock>{{comment.comment}}</ng-template>
                           
-                          <div *ngIf="comment.owner === ID || role === 'admin'">
+                          <div *ngIf="role === 'admin'">
                             <button (click)="deleteComment(comment.id)">x</button>
                       </div>
                      </mat-expansion-panel>

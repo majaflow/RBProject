@@ -17,15 +17,15 @@ let httpOptions = {
 @Injectable()
 
 export class ShopsService {
-  private shopUrl = (`${APIURL}/coffee`);
+
+  private shopUrl = (`${APIURL}/coffee/`);
   private createUrl =(`${APIURL}/coffee/create`);
   
+
   public shopID : number
-  commentUrl = (`${APIURL}/coffee`)
+  commentUrl = (`${APIURL}/coffee/`)
   constructor(
-
     private http: HttpClient, private userService: UserService) { }
-
 
 
 getShops() {
@@ -35,8 +35,8 @@ setshopID(value : number) {
 this.shopID = value
 }
 
-getSingle() {
-  return this.http.get(`${this.shopUrl}${this.shopID}`)
+getSingle(shopId) {
+  return this.http.get(`${this.shopUrl}${shopId}`)
 }
 
 makeShops(shops: Shops) : Observable<Shops[]> {
@@ -51,7 +51,7 @@ deleteShops() {
         'Content-Type': 'application/json',
         'authorization': localStorage.getItem('token')
       }
-    })
+    }).then(res=> console.log(res)).then()
   } else {
     // window.location.href='/shops';
     fetch(`${this.shopUrl}${this.shopID}`,{
@@ -66,11 +66,11 @@ deleteShops() {
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
-
   console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
-
 }
+
+
 getComment() {
   return this.http.get(this.commentUrl)
 }
@@ -121,7 +121,6 @@ testDelete() : Observable<any> {
     return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions)
   }
 } 
-
 
 
 postComment(comment) {

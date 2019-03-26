@@ -17,8 +17,8 @@ const httpOptions ={
 })
 export class UserService {
   private baseUrl = (`${APIURL}`)
-  private logIn = 'user/signin'
-  private signUp = 'user/createuser';
+  private logIn = '/user/signin'
+  private signUp = '/user/createuser';
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -45,7 +45,7 @@ export class UserService {
         localStorage.setItem('token',user.sessionToken)
         localStorage.setItem('id',user.user.id)
         localStorage.setItem('role', user.user.role)
-
+        this.role= localStorage.getItem('role')
         this.id= Number(localStorage.getItem('id'))
         this.role = localStorage.getItem('role')
         window.location.href='/home';

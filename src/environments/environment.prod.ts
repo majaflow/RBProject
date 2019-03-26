@@ -7,9 +7,9 @@ switch (window.location.hostname) {
     // this is the deployed angular application
     case 'coffeecodeclient.herokuapp.com':
         // this is the full url of your deployed API
-        APIURL = 'https://coffeeredbadgeserver.herokuapp.com/'
+        APIURL = 'https://coffeeredbadgeserver.herokuapp.com'
         break;
     default:
         // this is the local host name of your API
-        APIURL = 'http://localhost:3000';
+        APIURL = 'https://coffeeredbadgeserver.herokuapp.com';
 }
