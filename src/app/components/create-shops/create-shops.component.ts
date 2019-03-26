@@ -99,7 +99,8 @@ export class CreateShopsComponent implements OnInit {
     // window.location.href='/shops';
   }
   updateShop(id) {
-    console.log(id)
+    
+    // console.log(id)
     let UpdatedShop = {
 
 
@@ -107,12 +108,11 @@ export class CreateShopsComponent implements OnInit {
     owner: this.ID,
     rating:  5}
 
-
     }
     this.shopsService.updateShops(UpdatedShop).subscribe(Shop => {
     this.findShops()
-    window.location.href='/shops';
-    console.log(Shop)
+    // window.location.href='/shops';
+    // console.log(Shop)
     })
     
 
@@ -140,7 +140,6 @@ export class CreateShopsComponent implements OnInit {
 //    this.findShops()
 //  }
 
-
 }
   
 
@@ -153,7 +152,6 @@ export class CreateShopsComponent implements OnInit {
 //    this.findShops()
 //  }
 // }
-
 
 
 

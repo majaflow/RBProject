@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Shops } from '../models/shops';
-import {Comments} from '../models/comment'
+import {Comments} from '../models/comment';
 import { UserService } from './user.service';
 // import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { APIURL } from '../../environments/environment.prod';
@@ -66,13 +66,11 @@ deleteShops() {
  // return this.http.delete(`${this.shopUrl}${this.shopID}`, httpOptions);
 }
 updateShops(shops: any) : Observable<any> {
-
-
   console.log(shops)
   return this.http.put<any>(`${this.shopUrl}${this.shopID}`, shops, httpOptions);
-
-
 }
+
+
 getComment() {
   return this.http.get(this.commentUrl)
 }

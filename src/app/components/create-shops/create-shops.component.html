@@ -90,7 +90,7 @@
                         </div>
                         <ng-template #elseBlock>{{comment.comment}}</ng-template>
                           
-                          <div *ngIf="comment.owner === ID || role === 'admin'">
+                          <div *ngIf="role === 'admin'">
                             <button (click)="deleteComment(comment.id)">x</button>
                       </div>
                      </mat-expansion-panel>

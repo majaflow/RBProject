@@ -40,6 +40,7 @@ export class BottomModalComponent implements OnInit {
     }
     console.log(this.ID)
     this.shopsService.updateShops(this.shop).subscribe(Shop => {
+      window.location.href='/shops'
       console.log('bottom-modal:', Shop)
     })
     // return JSON.stringify(this.updateShop);
